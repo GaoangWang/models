@@ -128,7 +128,7 @@ class SSDMobileNetV3FeatureExtractorBase(ssd_meta_arch.SSDFeatureExtractor):
         'from_layer': [
             self._from_layer[0], self._from_layer[1], '', '', '', ''
         ],
-        'layer_depth': [-1, -1, 512, 256, 256, 128],
+        'layer_depth': [-1, -1, 128, 128, 128, 128], #[-1, -1, 512, 256, 256, 128]
         'use_depthwise': self._use_depthwise,
         'use_explicit_padding': self._use_explicit_padding,
     }
@@ -206,6 +206,36 @@ class SSDMobileNetV3SmallFeatureExtractor(SSDMobileNetV3FeatureExtractorBase):
                scope_name='MobilenetV3'):
     super(SSDMobileNetV3SmallFeatureExtractor, self).__init__(
         conv_defs=mobilenet_v3.V3_SMALL_DETECTION,
+        from_layer=['layer_10/expansion_output', 'layer_13'],
+        is_training=is_training,
+        depth_multiplier=depth_multiplier,
+        min_depth=min_depth,
+        pad_to_multiple=pad_to_multiple,
+        conv_hyperparams_fn=conv_hyperparams_fn,
+        reuse_weights=reuse_weights,
+        use_explicit_padding=use_explicit_padding,
+        use_depthwise=use_depthwise,
+        override_base_feature_extractor_hyperparams=override_base_feature_extractor_hyperparams,
+        scope_name=scope_name
+    )
+
+
+class SSDMobileNetV3SmallminFeatureExtractor(SSDMobileNetV3FeatureExtractorBase):
+  """Mobilenet V3-Small feature extractor."""
+
+  def __init__(self,
+               is_training,
+               depth_multiplier,
+               min_depth,
+               pad_to_multiple,
+               conv_hyperparams_fn,
+               reuse_weights=None,
+               use_explicit_padding=False,
+               use_depthwise=False,
+               override_base_feature_extractor_hyperparams=False,
+               scope_name='MobilenetV3'):
+    super(SSDMobileNetV3SmallminFeatureExtractor, self).__init__(
+        conv_defs=mobilenet_v3.V3_SMALLMIN_DETECTION,
         from_layer=['layer_10/expansion_output', 'layer_13'],
         is_training=is_training,
         depth_multiplier=depth_multiplier,

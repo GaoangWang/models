@@ -63,6 +63,15 @@ from object_detection.predictors.heads import mask_head
 from object_detection.protos import model_pb2
 from object_detection.utils import ops
 
+from object_detection.models import ssd_edgenet_v1_feature_extractor as ssd_edgenet_v1
+from object_detection.models.ssd_edgenet_v1_feature_extractor import SSDEdgeNetV1FeatureExtractor
+
+from object_detection.models import ssd_edgenet_v2_feature_extractor as ssd_edgenet_v2
+from object_detection.models.ssd_edgenet_v2_feature_extractor import SSDEdgeNetV2FeatureExtractor
+
+from object_detection.models.ssd_mobilenet_v3_feature_extractor import SSDMobileNetV3SmallminFeatureExtractor
+
+
 # A map of names to SSD feature extractors.
 SSD_FEATURE_EXTRACTOR_CLASS_MAP = {
     'ssd_inception_v2': SSDInceptionV2FeatureExtractor,
@@ -85,6 +94,9 @@ SSD_FEATURE_EXTRACTOR_CLASS_MAP = {
         ssd_resnet_v1_ppn.SSDResnet152V1PpnFeatureExtractor,
     'embedded_ssd_mobilenet_v1': EmbeddedSSDMobileNetV1FeatureExtractor,
     'ssd_pnasnet': SSDPNASNetFeatureExtractor,
+    'ssd_edgenet_v1': SSDEdgeNetV1FeatureExtractor,
+    'ssd_edgenet_v2': SSDEdgeNetV2FeatureExtractor,
+    'ssd_mobilenet_v3_smallmin': SSDMobileNetV3SmallminFeatureExtractor,
 }
 
 SSD_KERAS_FEATURE_EXTRACTOR_CLASS_MAP = {
